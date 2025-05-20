@@ -1,6 +1,7 @@
 = LLM Router Example
 
 This is a Spring AI and Spring Integration application that routes customer questions to the correct agent.
+It utilizes Spring Integration to create the workflow for the https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/routing-workflow[Router Example] in the Spring Ai Samples.
 
 == Requirements:
 
