@@ -1,24 +1,79 @@
-= LLM Router Example
+= LLM Router Flow Example
 
-This is a Spring AI and Spring Integration application that routes customer questions to the correct agent.
-It utilizes Spring Integration to create the workflow for the https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/routing-workflow[Router Example] in the Spring Ai Samples.
+This is a Spring AI and Spring Integration application that intelligently routes customer support tickets to the appropriate specialized agent based on content analysis. It demonstrates how to combine Spring Integration's powerful messaging capabilities with Spring AI's language model integration to create an intelligent workflow for customer support ticket routing.
 
-== Requirements:
+The application is based on the https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/routing-workflow[Router Example] in the Spring AI Agentic Samples, but implements the workflow using Spring Integration's flow configuration.
 
-* Java 17 or Above
+== Overview
 
-== Build:
+When a customer submits a support ticket, the application:
+
+1. Analyzes the ticket content using a Large Language Model (LLM)
+2. Determines the most appropriate support team (billing, account, product, or technical)
+3. Routes the ticket to the specialized support channel
+4. Generates an AI-assisted response tailored to the specific support domain
+
+== Key Components
+
+* *LLM Router*: Analyzes ticket content and determines the appropriate routing using Spring AI's ChatClient
+* *Integration Flow*: Configures the message channels and routing logic using Spring Integration
+* *Specialized Response Handlers*: Generate domain-specific responses for each support category
+* *Sample Ticket Generator*: Provides example tickets to demonstrate the routing capabilities
+
+== Requirements
+
+* Java 17 or above
+* OpenAI API key (or another supported LLM provider)
+* Maven for building the project
+
+== Build
 
 [source,shell]
 ----
-export OPENAI_API_KEY=<Your Open AI Key>
+export OPENAI_API_KEY=<Your OpenAI API Key>
 mvn clean package
 ----
 
-== Run:
+== Run
 
 [source,shell]
 ----
-export OPENAI_API_KEY=<your Open AI Key>
+export OPENAI_API_KEY=<Your OpenAI API Key>
 java -jar target/llmRouterFlow-0.0.1-SNAPSHOT.jar
 ----
+
+== Sample Output
+
+When you run the application, it will process three sample support tickets:
+
+1. An account access issue
+2. A billing/charge issue
+3. A product usage question (data export)
+
+For each ticket, you'll see:
+* The original ticket content
+* The routing analysis and selected support team
+* A specialized response from the appropriate support agent
+
+== Configuration Options
+
+The application uses Spring AI with OpenAI by default, but you can modify the `pom.xml` to use other LLM providers:
+
+* Anthropic (Claude): Uncomment the `spring-ai-starter-model-anthropic` dependency
+* Ollama (local models): Uncomment the `spring-ai-starter-model-ollama` dependency
+
+You can also customize the support routes and response prompts in `LLMRouterFlowConfiguration.java`.
+
+== Extending the Application
+
+To extend this application for your own use case:
+
+1. Modify the support routes in `LLMRouterFlowConfiguration.java`
+2. Customize the response prompts for each support domain
+3. Integrate with your actual support ticket system by replacing the sample ticket generator
+
+== Learn More
+
+* https://docs.spring.io/spring-ai/reference/[Spring AI Documentation]
+* https://docs.spring.io/spring-integration/reference/[Spring Integration Documentation]
+

@@ -33,6 +33,14 @@ public class LlmRouterFlowApplication {
         SpringApplication.run(LlmRouterFlowApplication.class, args);
     }
 
+    /**
+     * Creates an ApplicationRunner bean that simulates customer support tickets.
+     * This runner sends sample customer tickets to the input channel when the application starts,
+     * demonstrating the routing capabilities of the system with different types of support requests.
+     *
+     * @param inputChannel the message channel to send the sample tickets to
+     * @return an ApplicationRunner that executes when the application starts
+     */
     @Bean
     ApplicationRunner applicationRunner(MessageChannel inputChannel) {
         return args -> {

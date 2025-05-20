@@ -38,6 +38,7 @@ public class LLMRouterFlowConfiguration {
      *
      * @return the input message channel
      */
+    @Bean
     public MessageChannel inputChannel() {
         return new DirectChannel();
     }
