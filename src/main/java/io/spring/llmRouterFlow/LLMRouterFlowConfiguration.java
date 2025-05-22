@@ -22,8 +22,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.dsl.IntegrationFlow;
-import org.springframework.integration.dsl.MessageChannels;
-import org.springframework.integration.dsl.QueueChannelSpec;
 import org.springframework.integration.router.AbstractMessageRouter;
 import org.springframework.messaging.MessageChannel;
 
@@ -110,7 +108,6 @@ public class LLMRouterFlowConfiguration {
      */
     @Bean
     public IntegrationFlow myFlow(AbstractMessageRouter router) {
-        QueueChannelSpec spec = MessageChannels.queue();
         return IntegrationFlow.from("inputChannel")
                 .route(router)
                 .get();
