@@ -107,7 +107,7 @@ public class LLMRouterFlowConfiguration {
      * @return the configured integration flow
      */
     @Bean
-    public IntegrationFlow myFlow(AbstractMessageRouter router) {
+    public IntegrationFlow routerFlow(AbstractMessageRouter router) {
         return IntegrationFlow.from("inputChannel")
                 .route(router)
                 .get();
